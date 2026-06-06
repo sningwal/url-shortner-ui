@@ -49,10 +49,10 @@ export default function RedirectPage() {
         clearInterval(progressInterval);
         setShowSecurityCheck(false);
         // Small delay to show the redirect page, then redirect
-        //  window.location.href = originalUrl;
-        setTimeout(() => {
-          window.location.href = originalUrl;
-        }, 2000);
+        window.location.href = originalUrl;
+        // setTimeout(() => {
+        //   window.location.href = originalUrl;
+        // }, 2000);
         
       } catch (error: any) {
         console.error('Redirect error:', error);
