@@ -35,7 +35,7 @@ function isValidUrl(str: string) {
 export default function HeroForm() {
   const [date, setDate] = useState<Date>()
   const [url, setUrl] = useState('')
-  const [customSlug, setCustomSlug] = useState(null)
+  const [customSlug, setCustomSlug] = useState("")
   const [activeFeature, setActiveFeature] = useState<string | null>('custom')
   const [shortened, setShortened] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -55,7 +55,7 @@ export default function HeroForm() {
 const handleShorten = async () => {
   setShortened(null);
   setError(null);
-  setCustomSlug(null);
+  setCustomSlug("");
     if (!valid) return
     setLoading(true)
     // await new Promise(r => setTimeout(r, 900))
@@ -64,7 +64,7 @@ const handleShorten = async () => {
       try {
     const payload = {
     "originalUrl":url,
-    "customAlias": customSlug,
+    "customAlias": customSlug.trim() || null,
     "isPrivate": false,
     "expiresAt": "2026-06-30T23:59:59Z",
     "generateQrCode": false
@@ -105,7 +105,7 @@ setShortened(`https://shortly.sandeepningwal.com/${shortKey}`);
     );
       }
     setLoading(false)
-    setCustomSlug(null);
+    setCustomSlug("");
   }
 
 //   const handleCreateBudget = async (
@@ -262,7 +262,7 @@ useEffect(() => {
               </span>
               <input
                 type="text"
-                value={customSlug}
+                value={customSlug ?? ""}
                 onChange={e => setCustomSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                 placeholder="my-custom-link"
                 className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-white/20 outline-none"
