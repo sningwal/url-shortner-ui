@@ -34,8 +34,8 @@ function isValidUrl(str: string) {
 
 export default function HeroForm() {
   const [date, setDate] = useState<Date>()
-  const [url, setUrl] = useState('https://www.urlshort.dev')
-  const [customSlug, setCustomSlug] = useState(null)
+  const [url, setUrl] = useState('')
+  const [customSlug, setCustomSlug] = useState('')
   const [activeFeature, setActiveFeature] = useState<string | null>('custom')
   const [shortened, setShortened] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -55,7 +55,7 @@ export default function HeroForm() {
 const handleShorten = async () => {
   setShortened(null);
   setError(null);
-  setCustomSlug(null);
+  setCustomSlug('');
     if (!valid) return
     setLoading(true)
     // await new Promise(r => setTimeout(r, 900))
@@ -106,7 +106,7 @@ setShortened(`http://localhost:3000/${shortKey}`);
       }
     // setShortened(`http://localhost:8080/api/v1/short-urls/${customSlug}`)
     setLoading(false)
-    setCustomSlug(null);
+    setCustomSlug('');
   }
 
 //   const handleCreateBudget = async (
@@ -209,8 +209,8 @@ useEffect(() => {
           <div className="relative flex-1">
             <input
               type="text"
-              value={url}
-              onChange={e => { setUrl(e.target.value); setShortened(null) }}
+              value={url ?? ""} 
+       onChange={e => { setUrl(e.target.value); setShortened(null) }}
               placeholder="Paste your long URL here..."
               className="input-glow w-full bg-black/30 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-all focus:border-cyan-400/60"
             />
