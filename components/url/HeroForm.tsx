@@ -35,7 +35,7 @@ function isValidUrl(str: string) {
 export default function HeroForm() {
   const [date, setDate] = useState<Date>()
   const [url, setUrl] = useState('')
-  const [customSlug, setCustomSlug] = useState('')
+  const [customSlug, setCustomSlug] = useState(null)
   const [activeFeature, setActiveFeature] = useState<string | null>('custom')
   const [shortened, setShortened] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -55,7 +55,7 @@ export default function HeroForm() {
 const handleShorten = async () => {
   setShortened(null);
   setError(null);
-  setCustomSlug('');
+  setCustomSlug(null);
     if (!valid) return
     setLoading(true)
     // await new Promise(r => setTimeout(r, 900))
@@ -79,7 +79,7 @@ const handleShorten = async () => {
       // setCustomSlug(res?.data?.data?.shortKey);
 const shortKey = res?.data?.data?.shortKey;
 setCustomSlug(shortKey);
-setShortened(`http://localhost:3000/${shortKey}`);
+setShortened(`https://shortly.sandeepningwal.com/${shortKey}`);
       // toast.success(
       //   res?.data?.message || "Budget created successfully"
       // );
@@ -104,9 +104,8 @@ setShortened(`http://localhost:3000/${shortKey}`);
       "Something went wrong. Please try again."
     );
       }
-    // setShortened(`http://localhost:8080/api/v1/short-urls/${customSlug}`)
     setLoading(false)
-    setCustomSlug('');
+    setCustomSlug(null);
   }
 
 //   const handleCreateBudget = async (
@@ -259,7 +258,7 @@ useEffect(() => {
             <div className="flex items-center border border-white/10 rounded-xl overflow-hidden bg-black/20">
               <span className="px-4 py-3 text-sm text-white/30 border-r border-white/10 bg-white/5 whitespace-nowrap">
                 {/* lnk.sh/ */}
-                http://localhost:3000/
+                https://shortly.sandeepningwal.com/
               </span>
               <input
                 type="text"
